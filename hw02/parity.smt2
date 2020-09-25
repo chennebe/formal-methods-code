@@ -1,3 +1,5 @@
+; @Author Charles Henneberger (cihen)
+
 (declare-const p1 Bool)
 (declare-const p2 Bool)
 (declare-const p3 Bool)
