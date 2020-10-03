@@ -58,6 +58,8 @@ s.add(Implies(And(Wolf(x), Fox(y)), Not(Eats(x,y))))
 s.add(Implies(And(Wolf(x), Grain(y)), Not(Eats(x,y))))
 s.add(Implies(And(Bird(x), Snail(y)), Not(Eats(x,y))))
 
+print(s.check())
+
 a, b, c = Consts('a b c', Steamroller)
 s.add(Exists(a, Exists(b, And( \
 	Animal(a), \
@@ -66,3 +68,4 @@ s.add(Exists(a, Exists(b, And( \
 
 print(s.check())
 print(s.model())
+print(Wolf(a))

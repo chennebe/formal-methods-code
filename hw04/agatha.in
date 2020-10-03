@@ -1,0 +1,45 @@
+%% @Author Charles Henneberger (cihen)
+
+set(binary_resolution).
+clear(print_initial_clauses).
+clear(print_kept).
+clear(print_given).
+assign(max_seconds,1).
+assign(stats,none).
+
+
+formulas(assumptions).
+
+exists x A(x).
+exists x B(x).
+exists x C(x).
+exists x D(x).
+
+
+exists x (A(y) & Killed(x,y) & D(z) & LivesIn(x,z)).
+
+(D(z) & LivesIn(x,z)) -> (A(x) | B(x) | C(x)).
+
+Killed(x,y) -> (Hates(x,y) & -RicherThan(x,y)).
+
+A(x) & C(y) & Hates(x,z) -> -Hates(y,z).
+
+all y ((A(x) & B(y) & -Hates(x,y))
+				| (A(x) & -B(y) & Hates(x,y))).
+
+all x (B(y) & A(z) & -RicherThan(x,z) -> Hates(y,x)).
+
+A(x) & B(y) & Hates(x,z) -> Hates(y,z).
+
+all x (exists y (-Hates(x,y))).
+
+(A(x) -> -B(x)) & (B(x) -> -A(x)).
+
+end_of_list.
+
+
+%formulas(goals).
+
+%exists x (A(y) & Killed(x,y)).
+
+%end_of_list.
