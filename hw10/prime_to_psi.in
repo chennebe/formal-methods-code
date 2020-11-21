@@ -1,0 +1,81 @@
+%% @Author Charles Henneberger (cihen)
+
+%set(binary_resolution).
+%clear(print_initial_clauses).
+%clear(print_kept).
+%clear(print_given).
+%assign(max_seconds,1).
+%assign(stats,none).
+
+formulas(assumptions).
+
+%no_c = all x (R(x,c)).
+
+%rhs = exists v (exists w (exists y (-(v = w) & R(v,y) & R(w,y)))).
+
+%psi = (no_c & 
+%	all x (
+%	exists y (
+%		R(x,y)
+%	))) 
+%-> rhs.
+
+all x (
+	R(x,c)) & 
+all x (
+	exists y (
+		-R(x,y) &
+		all z (
+			((z = y) & R(x,z)) |
+			(-(z = y) & -R(x,z))
+		)
+	)
+)
+
+-> 
+
+exists v (
+	exists w (
+		exists y (
+			-(v = w) & 
+			R(v,y) & 
+			R(w,y)
+		)
+	)
+).
+
+%prime = (no_c & 
+%	all x (
+%	exists y (
+%	all z ( 
+%		(-(y = z) & -R(x,z)) | ((y = z) & R(x,y))
+%	)))) 
+%-> rhs.
+
+end_of_list.
+
+
+
+formulas(goals).
+
+all x (
+	R(x,c)) & 
+all x (
+	exists y (
+		R(x,y)
+	)
+) 
+
+-> 
+
+exists v (
+	exists w (
+		exists y (
+			-(v = w) & 
+			R(v,y) & 
+			R(w,y)
+		)
+	)
+).
+
+end_of_list.
