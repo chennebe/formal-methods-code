@@ -1,0 +1,124 @@
+============================== Prover9 ===============================
+Prover9 (64) version 2009-11A, November 2009.
+Process 9307 was started by charles on oasis,
+Mon Nov 30 19:16:02 2020
+The command was "prover9 -f hw11p5c.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file hw11p5c.in
+
+clear(print_initial_clauses).
+clear(print_kept).
+clear(print_given).
+assign(stats,none).
+assign(max_seconds,10).
+
+formulas(assumptions).
+PartialOrder(x,x).
+PartialOrder(x,y) & PartialOrder(y,x) -> x = y.
+PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z).
+(all x PartialOrder(Bot,x)).
+(all x PartialOrder(x,Top)).
+PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z).
+PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y).
+XOp(x,PlusOp(y,z)) = PlusOp(XOp(x,y),XOp(x,z)).
+PlusOp(x,XOp(y,z)) = XOp(PlusOp(x,y),PlusOp(x,z)).
+(all x all y all z (PartialOrder(x,PlusOp(y,z)) -> PartialOrder(x,y) | PartialOrder(x,z))).
+end_of_list.
+
+formulas(goals).
+(all x all y (PartialOrder(x,y) | PartialOrder(y,x))).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 PartialOrder(x,y) & PartialOrder(y,x) -> x = y # label(non_clause).  [assumption].
+2 PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z) # label(non_clause).  [assumption].
+3 (all x PartialOrder(Bot,x)) # label(non_clause).  [assumption].
+4 (all x PartialOrder(x,Top)) # label(non_clause).  [assumption].
+5 PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z) # label(non_clause).  [assumption].
+6 PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y) # label(non_clause).  [assumption].
+7 (all x all y all z (PartialOrder(x,PlusOp(y,z)) -> PartialOrder(x,y) | PartialOrder(x,z))) # label(non_clause).  [assumption].
+8 (all x all y (PartialOrder(x,y) | PartialOrder(y,x))) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:  (non-Horn, no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, PartialOrder ]).
+Function symbol precedence:  function_order([ Bot, Top, c1, c2, PlusOp, XOp ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(binary_resolution).  % (non-Horn)
+  % set(neg_ur_resolution).  % (non-Horn, less than 100 clauses)
+
+Auto_process settings:
+  % set(factor).  % (non-Horn)
+  % set(unit_deletion).  % (non-Horn)
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.03 seconds.
+
+============================== PROOF =================================
+
+% Proof 1 at 0.03 (+ 0.01) seconds.
+% Length of proof is 12.
+% Level of proof is 3.
+% Maximum clause weight is 11.000.
+% Given clauses 48.
+
+5 PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z) # label(non_clause).  [assumption].
+7 (all x all y all z (PartialOrder(x,PlusOp(y,z)) -> PartialOrder(x,y) | PartialOrder(x,z))) # label(non_clause).  [assumption].
+8 (all x all y (PartialOrder(x,y) | PartialOrder(y,x))) # label(non_clause) # label(goal).  [goal].
+9 PartialOrder(x,x).  [assumption].
+14 -PartialOrder(PlusOp(x,y),z) | PartialOrder(x,z).  [clausify(5)].
+15 -PartialOrder(PlusOp(x,y),z) | PartialOrder(y,z).  [clausify(5)].
+23 -PartialOrder(x,PlusOp(y,z)) | PartialOrder(x,y) | PartialOrder(x,z).  [clausify(7)].
+24 -PartialOrder(c1,c2).  [deny(8)].
+25 -PartialOrder(c2,c1).  [deny(8)].
+61 -PartialOrder(PlusOp(c1,x),c2).  [ur(14,b,24,a)].
+67 -PartialOrder(PlusOp(x,c2),c1).  [ur(15,b,25,a)].
+269 $F.  [ur(23,b,67,a,c,61,a),unit_del(a,9)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=48. Generated=728. Kept=259. proofs=1.
+Usable=39. Sos=126. Demods=15. Limbo=1, Disabled=109. Hints=0.
+Megabytes=0.32.
+User_CPU=0.03, System_CPU=0.01, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 9307 exit (max_proofs) Mon Nov 30 19:16:02 2020

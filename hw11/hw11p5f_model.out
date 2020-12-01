@@ -1,0 +1,38 @@
+% number = 1
+% seconds = 0
+
+% Interpretation of size 2
+
+ Bot : 0
+
+ Top : 1
+
+ c1 : 1
+
+ c2 : 0
+
+ c3 : 0
+
+ Imp : 
+       | 0 1
+    ---+----
+     0 | 0 0
+     1 | 0 0
+
+ PlusOp : 
+       | 0 1
+    ---+----
+     0 | 0 1
+     1 | 1 1
+
+ XOp : 
+       | 0 1
+    ---+----
+     0 | 0 0
+     1 | 0 1
+
+ PartialOrder : 
+       | 0 1
+    ---+----
+     0 | 1 1
+     1 | 0 1

@@ -1,0 +1,135 @@
+============================== Mace4 =================================
+Mace4 (64) version 2009-11A, November 2009.
+Process 10791 was started by charles on oasis,
+Mon Nov 30 20:05:01 2020
+The command was "mace4 -c -P 1 -f hw11p5f.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file hw11p5f.in
+
+clear(print_initial_clauses).
+WARNING, Flag not recognized: clear(print_initial_clauses).
+clear(print_kept).
+WARNING, Flag not recognized: clear(print_kept).
+clear(print_given).
+WARNING, Flag not recognized: clear(print_given).
+assign(stats,none).
+WARNING, Parameter not recognized: assign(stats,none).
+assign(max_seconds,10).
+
+formulas(assumptions).
+PartialOrder(x,x).
+PartialOrder(x,y) & PartialOrder(y,x) -> x = y.
+PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z).
+(all x PartialOrder(Bot,x)).
+(all x PartialOrder(x,Top)).
+PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z).
+PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y).
+XOp(x,PlusOp(y,z)) = PlusOp(XOp(x,y),XOp(x,z)).
+PlusOp(x,XOp(y,z)) = XOp(PlusOp(x,y),PlusOp(x,z)).
+(all x all y (PartialOrder(x,y) | PartialOrder(y,x))).
+end_of_list.
+
+formulas(goals).
+PartialOrder(XOp(x,y),z) <-> PartialOrder(x,Imp(y,z)).
+end_of_list.
+    % set(print_models) -> clear(print_models_tabular).
+
+% From the command line: set(print_models).
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 PartialOrder(x,y) & PartialOrder(y,x) -> x = y # label(non_clause).  [assumption].
+2 PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z) # label(non_clause).  [assumption].
+3 (all x PartialOrder(Bot,x)) # label(non_clause).  [assumption].
+4 (all x PartialOrder(x,Top)) # label(non_clause).  [assumption].
+5 PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z) # label(non_clause).  [assumption].
+6 PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y) # label(non_clause).  [assumption].
+7 (all x all y (PartialOrder(x,y) | PartialOrder(y,x))) # label(non_clause).  [assumption].
+8 PartialOrder(XOp(x,y),z) <-> PartialOrder(x,Imp(y,z)) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+PartialOrder(x,x).
+-PartialOrder(x,y) | -PartialOrder(y,x) | y = x.
+-PartialOrder(x,y) | -PartialOrder(y,z) | PartialOrder(x,z).
+PartialOrder(Bot,x).
+PartialOrder(x,Top).
+-PartialOrder(PlusOp(x,y),z) | PartialOrder(x,z).
+-PartialOrder(PlusOp(x,y),z) | PartialOrder(y,z).
+PartialOrder(PlusOp(x,y),z) | -PartialOrder(x,z) | -PartialOrder(y,z).
+-PartialOrder(x,XOp(y,z)) | PartialOrder(x,y).
+-PartialOrder(x,XOp(y,z)) | PartialOrder(x,z).
+PartialOrder(x,XOp(y,z)) | -PartialOrder(x,y) | -PartialOrder(x,z).
+XOp(x,PlusOp(y,z)) = PlusOp(XOp(x,y),XOp(x,z)).
+PlusOp(x,XOp(y,z)) = XOp(PlusOp(x,y),PlusOp(x,z)).
+PartialOrder(x,y) | PartialOrder(y,x).
+PartialOrder(XOp(c1,c2),c3) | PartialOrder(c1,Imp(c2,c3)).
+-PartialOrder(XOp(c1,c2),c3) | -PartialOrder(c1,Imp(c2,c3)).
+end_of_list.
+
+============================== end of clauses for search =============
+
+% There are no natural numbers in the input.
+
+============================== DOMAIN SIZE 2 =========================
+
+============================== MODEL =================================
+
+interpretation( 2, [number=1, seconds=0], [
+
+        function(Bot, [ 0 ]),
+
+        function(Top, [ 1 ]),
+
+        function(c1, [ 1 ]),
+
+        function(c2, [ 0 ]),
+
+        function(c3, [ 0 ]),
+
+        function(Imp(_,_), [
+			   0, 0,
+			   0, 0 ]),
+
+        function(PlusOp(_,_), [
+			   0, 1,
+			   1, 1 ]),
+
+        function(XOp(_,_), [
+			   0, 0,
+			   0, 1 ]),
+
+        relation(PartialOrder(_,_), [
+			   1, 1,
+			   0, 1 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 2.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.03 seconds).
+Ground clauses: seen=88, kept=64.
+Selections=10, assignments=14, propagations=18, current_models=1.
+Rewrite_terms=164, rewrite_bools=91, indexes=22.
+Rules_from_neg_clauses=14, cross_offs=14.
+
+============================== end of statistics =====================
+
+User_CPU=0.03, System_CPU=0.01, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 10791 exit (max_models) Mon Nov 30 20:05:01 2020
+The process finished Mon Nov 30 20:05:01 2020

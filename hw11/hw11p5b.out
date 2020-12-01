@@ -1,0 +1,161 @@
+============================== Prover9 ===============================
+Prover9 (64) version 2009-11A, November 2009.
+Process 9088 was started by charles on oasis,
+Mon Nov 30 19:07:04 2020
+The command was "prover9 -f hw11p5b.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file hw11p5b.in
+
+clear(print_initial_clauses).
+clear(print_kept).
+clear(print_given).
+assign(stats,none).
+assign(max_seconds,10).
+
+formulas(assumptions).
+PartialOrder(x,x).
+PartialOrder(x,y) & PartialOrder(y,x) -> x = y.
+PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z).
+(all x PartialOrder(Bot,x)).
+(all x PartialOrder(x,Top)).
+PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z).
+PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y).
+XOp(x,PlusOp(y,z)) = PlusOp(XOp(x,y),XOp(x,z)).
+PlusOp(x,XOp(y,z)) = XOp(PlusOp(x,y),PlusOp(x,z)).
+end_of_list.
+
+formulas(goals).
+(all x all y PlusOp(x,y) = PlusOp(y,x)).
+(all x all y XOp(x,y) = XOp(y,x)).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 PartialOrder(x,y) & PartialOrder(y,x) -> x = y # label(non_clause).  [assumption].
+2 PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z) # label(non_clause).  [assumption].
+3 (all x PartialOrder(Bot,x)) # label(non_clause).  [assumption].
+4 (all x PartialOrder(x,Top)) # label(non_clause).  [assumption].
+5 PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z) # label(non_clause).  [assumption].
+6 PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y) # label(non_clause).  [assumption].
+7 (all x all y PlusOp(x,y) = PlusOp(y,x)) # label(non_clause) # label(goal).  [goal].
+8 (all x all y XOp(x,y) = XOp(y,x)) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:
+  % assign(max_proofs, 2).  % (Horn set with more than one neg. clause)
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, PartialOrder ]).
+Function symbol precedence:  function_order([ Bot, Top, c1, c2, c3, c4, PlusOp, XOp ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(hyper_resolution).  % (nonunit Horn with equality)
+    % set(hyper_resolution) -> set(pos_hyper_resolution).
+  % set(neg_ur_resolution).  % (nonunit Horn with equality)
+  % assign(para_lit_limit, 3).  % (nonunit Horn with equality)
+
+Auto_process settings:  (no changes).
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.02 seconds.
+
+% Operation PlusOp is commutative; C redundancy checks enabled.
+
+============================== PROOF =================================
+
+% Proof 1 at 0.04 (+ 0.02) seconds.
+% Length of proof is 14.
+% Level of proof is 5.
+% Maximum clause weight is 11.000.
+% Given clauses 47.
+
+1 PartialOrder(x,y) & PartialOrder(y,x) -> x = y # label(non_clause).  [assumption].
+5 PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z) # label(non_clause).  [assumption].
+7 (all x all y PlusOp(x,y) = PlusOp(y,x)) # label(non_clause) # label(goal).  [goal].
+9 PartialOrder(x,x).  [assumption].
+10 -PartialOrder(x,y) | -PartialOrder(y,x) | y = x.  [clausify(1)].
+14 -PartialOrder(PlusOp(x,y),z) | PartialOrder(x,z).  [clausify(5)].
+15 -PartialOrder(PlusOp(x,y),z) | PartialOrder(y,z).  [clausify(5)].
+16 PartialOrder(PlusOp(x,y),z) | -PartialOrder(x,z) | -PartialOrder(y,z).  [clausify(5)].
+23 PlusOp(c2,c1) != PlusOp(c1,c2).  [deny(7)].
+25 PartialOrder(x,PlusOp(x,y)).  [hyper(14,a,9,a)].
+26 PartialOrder(x,PlusOp(y,x)).  [hyper(15,a,9,a)].
+69 PartialOrder(PlusOp(x,y),PlusOp(y,x)).  [hyper(16,b,26,a,c,25,a)].
+451 PlusOp(x,y) = PlusOp(y,x).  [hyper(10,a,69,a,b,69,a)].
+452 $F.  [resolve(451,a,23,a)].
+
+============================== end of proof ==========================
+% Redundant proof: 454 $F.  [resolve(453,a,9,a)].
+% Redundant proof: 458 $F.  [back_rewrite(23),rewrite([451(3)]),xx(a)].
+
+% Disable descendants (x means already disabled):
+ 23x 453
+
+% Operation XOp is commutative; C redundancy checks enabled.
+
+============================== PROOF =================================
+
+% Proof 2 at 0.05 (+ 0.02) seconds.
+% Length of proof is 14.
+% Level of proof is 5.
+% Maximum clause weight is 11.000.
+% Given clauses 55.
+
+1 PartialOrder(x,y) & PartialOrder(y,x) -> x = y # label(non_clause).  [assumption].
+6 PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y) # label(non_clause).  [assumption].
+8 (all x all y XOp(x,y) = XOp(y,x)) # label(non_clause) # label(goal).  [goal].
+9 PartialOrder(x,x).  [assumption].
+10 -PartialOrder(x,y) | -PartialOrder(y,x) | y = x.  [clausify(1)].
+17 -PartialOrder(x,XOp(y,z)) | PartialOrder(x,y).  [clausify(6)].
+18 -PartialOrder(x,XOp(y,z)) | PartialOrder(x,z).  [clausify(6)].
+19 PartialOrder(x,XOp(y,z)) | -PartialOrder(x,y) | -PartialOrder(x,z).  [clausify(6)].
+24 XOp(c4,c3) != XOp(c3,c4).  [deny(8)].
+31 PartialOrder(XOp(x,y),x).  [hyper(17,a,9,a)].
+32 PartialOrder(XOp(x,y),y).  [hyper(18,a,9,a)].
+179 PartialOrder(XOp(x,y),XOp(y,x)).  [hyper(19,b,32,a,c,31,a)].
+799 XOp(x,y) = XOp(y,x).  [hyper(10,a,179,a,b,179,a)].
+800 $F.  [resolve(799,a,24,a)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=55. Generated=2032. Kept=787. proofs=2.
+Usable=42. Sos=401. Demods=32. Limbo=42, Disabled=316. Hints=0.
+Megabytes=1.01.
+User_CPU=0.05, System_CPU=0.02, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 2 proofs.
+
+Process 9088 exit (max_proofs) Mon Nov 30 19:07:04 2020

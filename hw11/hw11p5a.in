@@ -1,0 +1,48 @@
+%% @Author Charles Henneberger - cihen
+
+%% prover9 -f hw11p5a.in
+%%   or
+%% mace4 -c -P 1 -f hw11p5a.in
+%%
+%% careful when directing to file, the tool that "fails" generates a large file
+
+clear(print_initial_clauses).
+clear(print_kept).
+clear(print_given).
+assign(stats,none).
+assign(max_seconds,10). %% to stop prover9 from going forever
+
+formulas(assumptions).
+
+%% Define lattice here
+
+%% 1-3 (poset)
+PartialOrder(x,x).
+
+(PartialOrder(x,y) & PartialOrder(y,x)) -> (x=y).
+
+(PartialOrder(x,y) & PartialOrder(y,z)) -> PartialOrder(x,z).
+
+
+%% 4-7 (lattice)
+all x PartialOrder(Bot, x).
+
+all x PartialOrder(x, Top).
+
+PartialOrder(PlusOp(x, y), z) <-> PartialOrder(x, z) & PartialOrder(y, z).
+
+PartialOrder(z, XOp(x, y)) <-> PartialOrder(z, x) & PartialOrder(z, y).
+
+
+%% 8-9 (distributive)
+XOp(x, PlusOp(y, z)) = PlusOp(XOp(x, y), XOp(x, z)).
+PlusOp(x, XOp(y, z)) = XOp(PlusOp(x, y), PlusOp(x, z)).
+
+
+end_of_list.
+
+formulas(goals).
+
+all x exists y (PlusOp(x, y) = Top & XOp(x, y) = Bot).
+
+end_of_list.

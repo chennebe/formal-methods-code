@@ -1,0 +1,400 @@
+============================== Prover9 ===============================
+Prover9 (64) version 2009-11A, November 2009.
+Process 10172 was started by charles on oasis,
+Mon Nov 30 19:39:31 2020
+The command was "prover9 -f hw11p5d.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file hw11p5d.in
+
+clear(print_initial_clauses).
+clear(print_kept).
+clear(print_given).
+assign(stats,none).
+assign(max_seconds,60).
+
+formulas(assumptions).
+PartialOrder(x,x).
+PartialOrder(x,y) & PartialOrder(y,x) -> x = y.
+PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z).
+(all x PartialOrder(Bot,x)).
+(all x PartialOrder(x,Top)).
+PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z).
+PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y).
+XOp(x,PlusOp(y,z)) = PlusOp(XOp(x,y),XOp(x,z)).
+PlusOp(x,XOp(y,z)) = XOp(PlusOp(x,y),PlusOp(x,z)).
+PlusOp(x,Bar(x)) = Top.
+XOp(x,Bar(x)) = Bot.
+end_of_list.
+
+formulas(goals).
+PartialOrder(XOp(x,y),z) <-> PartialOrder(x,PlusOp(Bar(y),z)).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 PartialOrder(x,y) & PartialOrder(y,x) -> x = y # label(non_clause).  [assumption].
+2 PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z) # label(non_clause).  [assumption].
+3 (all x PartialOrder(Bot,x)) # label(non_clause).  [assumption].
+4 (all x PartialOrder(x,Top)) # label(non_clause).  [assumption].
+5 PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z) # label(non_clause).  [assumption].
+6 PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y) # label(non_clause).  [assumption].
+7 PartialOrder(XOp(x,y),z) <-> PartialOrder(x,PlusOp(Bar(y),z)) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:  (non-Horn, no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, PartialOrder ]).
+Function symbol precedence:  function_order([ Bot, Top, c1, c2, c3, PlusOp, XOp, Bar ]).
+After inverse_order: Function symbol precedence:  function_order([ Bot, Top, c1, c2, c3, PlusOp, XOp, Bar ]).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(binary_resolution).  % (non-Horn)
+  % set(neg_ur_resolution).  % (non-Horn, less than 100 clauses)
+
+Auto_process settings:
+  % set(factor).  % (non-Horn)
+  % set(unit_deletion).  % (non-Horn)
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.00 seconds.
+
+% Operation PlusOp is commutative; C redundancy checks enabled.
+
+% Operation XOp is commutative; C redundancy checks enabled.
+
+NOTE: Back_subsumption disabled, ratio of kept to back_subsumed is 147 (0.00 of 0.65 sec).
+
+Low Water (keep): wt=37.000, iters=6666
+
+Low Water (keep): wt=32.000, iters=6700
+
+Low Water (keep): wt=31.000, iters=6734
+
+Low Water (keep): wt=29.000, iters=6744
+
+Low Water (keep): wt=28.000, iters=6700
+
+Low Water (keep): wt=27.000, iters=6694
+
+Low Water (keep): wt=26.000, iters=6701
+
+Low Water (keep): wt=25.000, iters=6678
+
+Low Water (keep): wt=24.000, iters=6685
+
+Low Water (keep): wt=23.000, iters=6709
+
+Low Water (keep): wt=22.000, iters=6695
+
+Low Water (keep): wt=21.000, iters=6681
+
+Low Water (keep): wt=20.000, iters=6679
+
+Low Water (keep): wt=19.000, iters=6706
+
+Low Water (keep): wt=18.000, iters=6686
+
+Low Water (keep): wt=17.000, iters=6667
+
+Low Water (keep): wt=16.000, iters=6683
+
+Low Water (keep): wt=15.000, iters=6691
+
+Low Water (keep): wt=14.000, iters=6673
+
+Low Water (displace): id=56844, wt=89.000
+
+Low Water (displace): id=56835, wt=77.000
+
+Low Water (displace): id=57549, wt=75.000
+
+Low Water (displace): id=56826, wt=73.000
+
+Low Water (displace): id=56814, wt=67.000
+
+Low Water (displace): id=55825, wt=65.000
+
+Low Water (displace): id=55237, wt=61.000
+
+Low Water (displace): id=59314, wt=59.000
+
+Low Water (displace): id=59305, wt=57.000
+
+Low Water (displace): id=59321, wt=55.000
+
+Low Water (displace): id=57294, wt=54.000
+
+Low Water (displace): id=59307, wt=53.000
+
+Low Water (displace): id=58989, wt=51.000
+
+Low Water (displace): id=58435, wt=50.000
+
+Low Water (displace): id=59433, wt=49.000
+
+Low Water (displace): id=58610, wt=47.000
+
+Low Water (displace): id=57156, wt=46.000
+
+Low Water (displace): id=59394, wt=45.000
+
+Low Water (displace): id=58409, wt=44.000
+
+Low Water (displace): id=59505, wt=43.000
+
+Low Water (displace): id=58430, wt=42.000
+
+Low Water (displace): id=58634, wt=41.000
+
+Low Water (displace): id=59527, wt=40.000
+
+Low Water (displace): id=59649, wt=39.000
+
+Low Water (displace): id=59532, wt=38.000
+
+Low Water (displace): id=59518, wt=37.000
+
+Low Water (displace): id=57241, wt=36.000
+
+Low Water (displace): id=70716, wt=16.000
+
+Low Water (displace): id=71274, wt=15.000
+
+Low Water (displace): id=71346, wt=14.000
+
+============================== PROOF =================================
+
+% Proof 1 at 36.45 (+ 0.97) seconds.
+% Length of proof is 184.
+% Level of proof is 20.
+% Maximum clause weight is 17.000.
+% Given clauses 4346.
+
+1 PartialOrder(x,y) & PartialOrder(y,x) -> x = y # label(non_clause).  [assumption].
+2 PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z) # label(non_clause).  [assumption].
+3 (all x PartialOrder(Bot,x)) # label(non_clause).  [assumption].
+4 (all x PartialOrder(x,Top)) # label(non_clause).  [assumption].
+5 PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z) # label(non_clause).  [assumption].
+6 PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y) # label(non_clause).  [assumption].
+7 PartialOrder(XOp(x,y),z) <-> PartialOrder(x,PlusOp(Bar(y),z)) # label(non_clause) # label(goal).  [goal].
+8 PartialOrder(x,x).  [assumption].
+9 -PartialOrder(x,y) | -PartialOrder(y,x) | y = x.  [clausify(1)].
+10 -PartialOrder(x,y) | -PartialOrder(y,z) | PartialOrder(x,z).  [clausify(2)].
+11 PartialOrder(Bot,x).  [clausify(3)].
+12 PartialOrder(x,Top).  [clausify(4)].
+13 -PartialOrder(PlusOp(x,y),z) | PartialOrder(x,z).  [clausify(5)].
+14 -PartialOrder(PlusOp(x,y),z) | PartialOrder(y,z).  [clausify(5)].
+15 PartialOrder(PlusOp(x,y),z) | -PartialOrder(x,z) | -PartialOrder(y,z).  [clausify(5)].
+16 -PartialOrder(x,XOp(y,z)) | PartialOrder(x,y).  [clausify(6)].
+17 -PartialOrder(x,XOp(y,z)) | PartialOrder(x,z).  [clausify(6)].
+18 PartialOrder(x,XOp(y,z)) | -PartialOrder(x,y) | -PartialOrder(x,z).  [clausify(6)].
+19 XOp(x,PlusOp(y,z)) = PlusOp(XOp(x,y),XOp(x,z)).  [assumption].
+20 PlusOp(x,XOp(y,z)) = XOp(PlusOp(x,y),PlusOp(x,z)).  [assumption].
+21 PlusOp(XOp(PlusOp(x,y),x),XOp(PlusOp(x,y),z)) = PlusOp(x,XOp(y,z)).  [copy(20),rewrite([19(5)]),flip(a)].
+22 PlusOp(x,Bar(x)) = Top.  [assumption].
+23 XOp(x,Bar(x)) = Bot.  [assumption].
+24 PartialOrder(XOp(c1,c2),c3) | PartialOrder(c1,PlusOp(Bar(c2),c3)).  [deny(7)].
+25 -PartialOrder(XOp(c1,c2),c3) | -PartialOrder(c1,PlusOp(Bar(c2),c3)).  [deny(7)].
+26 PartialOrder(PlusOp(x,x),y) | -PartialOrder(x,y).  [factor(15,b,c)].
+29 -PartialOrder(x,Bot) | Bot = x.  [resolve(11,a,9,b)].
+31 -PartialOrder(Top,x) | Top = x.  [resolve(12,a,9,b),flip(b)].
+32 PartialOrder(x,PlusOp(x,y)).  [resolve(13,a,8,a)].
+33 PartialOrder(x,PlusOp(y,x)).  [resolve(14,a,8,a)].
+34 PartialOrder(PlusOp(Bot,x),y) | -PartialOrder(x,y).  [resolve(15,b,11,a)].
+35 PartialOrder(PlusOp(x,y),x) | -PartialOrder(y,x).  [resolve(15,b,8,a)].
+37 PartialOrder(PlusOp(x,y),y) | -PartialOrder(x,y).  [resolve(15,c,8,a)].
+38 PartialOrder(XOp(x,y),x).  [resolve(16,a,8,a)].
+39 PartialOrder(XOp(x,y),y).  [resolve(17,a,8,a)].
+40 PartialOrder(x,XOp(Top,y)) | -PartialOrder(x,y).  [resolve(18,b,12,a)].
+41 PartialOrder(x,XOp(x,y)) | -PartialOrder(x,y).  [resolve(18,b,8,a)].
+43 PartialOrder(x,XOp(y,x)) | -PartialOrder(x,y).  [resolve(18,c,8,a)].
+45 -PartialOrder(x,PlusOp(XOp(y,z),XOp(y,u))) | PartialOrder(x,PlusOp(z,u)).  [para(19(a,1),17(a,2))].
+52 PlusOp(XOp(x,y),XOp(x,Bar(y))) = XOp(x,Top).  [para(22(a,1),19(a,1,2)),flip(a)].
+64 PartialOrder(PlusOp(x,x),x).  [resolve(26,b,8,a)].
+71 PartialOrder(PlusOp(x,y),PlusOp(y,z)) | -PartialOrder(x,PlusOp(y,z)).  [resolve(32,a,15,c)].
+72 PartialOrder(PlusOp(x,y),PlusOp(x,z)) | -PartialOrder(y,PlusOp(x,z)).  [resolve(32,a,15,b)].
+73 PartialOrder(x,PlusOp(PlusOp(y,x),z)).  [resolve(32,a,14,a)].
+74 PartialOrder(x,PlusOp(PlusOp(x,y),z)).  [resolve(32,a,13,a)].
+75 -PartialOrder(x,y) | PartialOrder(x,PlusOp(y,z)).  [resolve(32,a,10,b)].
+76 -PartialOrder(PlusOp(x,y),x) | PlusOp(x,y) = x.  [resolve(32,a,9,b),flip(b)].
+82 PartialOrder(PlusOp(x,y),PlusOp(z,y)) | -PartialOrder(x,PlusOp(z,y)).  [resolve(33,a,15,c)].
+83 PartialOrder(PlusOp(x,y),PlusOp(z,x)) | -PartialOrder(y,PlusOp(z,x)).  [resolve(33,a,15,b)].
+84 PartialOrder(x,PlusOp(y,PlusOp(z,x))).  [resolve(33,a,14,a)].
+85 PartialOrder(x,PlusOp(y,PlusOp(x,z))).  [resolve(33,a,13,a)].
+88 PartialOrder(XOp(PlusOp(x,y),z),PlusOp(x,XOp(y,z))).  [para(21(a,1),33(a,2))].
+92 PartialOrder(XOp(x,y),XOp(z,x)) | -PartialOrder(XOp(x,y),z).  [resolve(38,a,18,c)].
+93 PartialOrder(XOp(x,y),XOp(x,z)) | -PartialOrder(XOp(x,y),z).  [resolve(38,a,18,b)].
+94 PartialOrder(XOp(XOp(x,y),z),y).  [resolve(38,a,17,a)].
+95 PartialOrder(XOp(XOp(x,y),z),x).  [resolve(38,a,16,a)].
+104 PartialOrder(XOp(x,y),XOp(z,y)) | -PartialOrder(XOp(x,y),z).  [resolve(39,a,18,c)].
+106 PartialOrder(XOp(x,XOp(y,z)),z).  [resolve(39,a,17,a)].
+107 PartialOrder(XOp(x,XOp(y,z)),y).  [resolve(39,a,16,a)].
+110 -PartialOrder(x,y) | PartialOrder(XOp(z,x),y).  [resolve(39,a,10,a)].
+111 -PartialOrder(x,XOp(y,x)) | XOp(y,x) = x.  [resolve(39,a,9,b)].
+113 XOp(x,Bot) = Bot.  [resolve(29,a,39,a),flip(a)].
+123 PlusOp(x,x) = x.  [resolve(64,a,9,b),unit_del(a,32)].
+140 PlusOp(XOp(PlusOp(x,y),x),Bot) = PlusOp(x,Bot).  [para(113(a,1),21(a,1,2)),rewrite([113(6)])].
+142 XOp(PlusOp(x,y),x) = PlusOp(x,XOp(y,x)).  [para(123(a,1),21(a,1))].
+144 PlusOp(PlusOp(x,XOp(y,x)),Bot) = PlusOp(x,Bot).  [back_rewrite(140),rewrite([142(2)])].
+150 PlusOp(PlusOp(x,XOp(y,x)),XOp(PlusOp(x,y),z)) = PlusOp(x,XOp(y,z)).  [back_rewrite(21),rewrite([142(2)])].
+153 PlusOp(Top,x) = Top.  [resolve(31,a,32,a),flip(a)].
+155 PlusOp(XOp(x,Top),XOp(x,y)) = XOp(x,Top).  [para(153(a,1),19(a,1,2)),flip(a)].
+158 PartialOrder(PlusOp(x,y),PlusOp(PlusOp(z,y),u)) | -PartialOrder(x,PlusOp(PlusOp(z,y),u)).  [resolve(73,a,15,c)].
+159 PartialOrder(PlusOp(x,y),PlusOp(PlusOp(z,x),u)) | -PartialOrder(y,PlusOp(PlusOp(z,x),u)).  [resolve(73,a,15,b)].
+167 PartialOrder(PlusOp(x,y),PlusOp(PlusOp(y,z),u)) | -PartialOrder(x,PlusOp(PlusOp(y,z),u)).  [resolve(74,a,15,c)].
+181 PartialOrder(PlusOp(Bot,x),x).  [resolve(34,b,8,a)].
+188 PlusOp(Bot,x) = x.  [resolve(181,a,9,b),unit_del(a,33)].
+198 PartialOrder(PlusOp(x,Bot),x).  [resolve(35,b,11,a)].
+207 PlusOp(x,Bot) = x.  [resolve(198,a,9,b),unit_del(a,32)].
+208 PlusOp(x,XOp(y,x)) = x.  [back_rewrite(144),rewrite([207(4),207(4)])].
+211 PlusOp(x,XOp(PlusOp(x,y),z)) = PlusOp(x,XOp(y,z)).  [back_rewrite(150),rewrite([208(2)])].
+213 XOp(PlusOp(x,y),x) = x.  [back_rewrite(142),rewrite([208(4)])].
+217 PartialOrder(PlusOp(x,y),PlusOp(z,PlusOp(u,y))) | -PartialOrder(x,PlusOp(z,PlusOp(u,y))).  [resolve(84,a,15,c)].
+228 PartialOrder(PlusOp(x,y),PlusOp(z,PlusOp(x,u))) | -PartialOrder(y,PlusOp(z,PlusOp(x,u))).  [resolve(85,a,15,b)].
+238 PartialOrder(PlusOp(XOp(x,y),y),y).  [resolve(37,b,39,a)].
+246 PartialOrder(XOp(XOp(x,y),z),XOp(y,u)) | -PartialOrder(XOp(XOp(x,y),z),u).  [resolve(94,a,18,b)].
+271 PartialOrder(XOp(x,XOp(y,z)),XOp(u,z)) | -PartialOrder(XOp(x,XOp(y,z)),u).  [resolve(106,a,18,c)].
+284 PartialOrder(XOp(x,XOp(y,z)),XOp(y,u)) | -PartialOrder(XOp(x,XOp(y,z)),u).  [resolve(107,a,18,b)].
+306 PartialOrder(x,XOp(Top,x)).  [resolve(40,b,8,a)].
+314 XOp(Top,x) = x.  [resolve(306,a,9,b),flip(b),unit_del(a,39)].
+315 PartialOrder(Bar(Top),Bot).  [para(23(a,1),306(a,2))].
+317 Bar(Top) = Bot.  [resolve(315,a,29,a),flip(a)].
+325 PartialOrder(x,XOp(x,Top)).  [resolve(41,b,12,a)].
+336 XOp(x,Top) = x.  [resolve(325,a,9,b),flip(b),unit_del(a,38)].
+337 PlusOp(x,XOp(x,y)) = x.  [back_rewrite(155),rewrite([336(2),336(4)])].
+339 PlusOp(XOp(x,y),XOp(x,Bar(y))) = x.  [back_rewrite(52),rewrite([336(6)])].
+342 PartialOrder(XOp(x,y),PlusOp(y,z)).  [para(208(a,1),73(a,2,1))].
+343 PartialOrder(XOp(x,y),PlusOp(z,y)).  [para(208(a,1),84(a,2,2))].
+370 PlusOp(XOp(x,y),y) = y.  [resolve(238,a,9,b),unit_del(a,33)].
+374 PartialOrder(XOp(x,y),PlusOp(z,x)).  [para(337(a,1),84(a,2,2))].
+438 XOp(x,XOp(y,x)) = XOp(y,x).  [para(370(a,1),213(a,1,1))].
+449 -PartialOrder(x,PlusOp(XOp(PlusOp(y,z),u),y)) | PartialOrder(x,PlusOp(u,y)).  [para(213(a,1),45(a,2,2))].
+475 PartialOrder(XOp(c1,c2),PlusOp(c3,x)) | PartialOrder(c1,PlusOp(Bar(c2),c3)).  [resolve(75,a,24,a)].
+1226 PartialOrder(PlusOp(XOp(x,y),z),PlusOp(z,x)).  [resolve(71,b,374,a)].
+1249 PartialOrder(PlusOp(x,y),PlusOp(y,PlusOp(x,z))).  [resolve(71,b,85,a)].
+1252 PartialOrder(PlusOp(x,y),PlusOp(y,x)).  [resolve(71,b,33,a)].
+1266 PlusOp(x,y) = PlusOp(y,x).  [resolve(1252,a,9,b),unit_del(a,1252)].
+1372 PartialOrder(XOp(c1,c2),PlusOp(c3,x)) | PartialOrder(c1,PlusOp(c3,Bar(c2))).  [back_rewrite(475),rewrite([1266(11)])].
+1374 -PartialOrder(x,PlusOp(y,XOp(z,u))) | PartialOrder(x,PlusOp(u,y)).  [back_rewrite(449),rewrite([1266(3),211(3)])].
+1385 -PartialOrder(XOp(c1,c2),c3) | -PartialOrder(c1,PlusOp(c3,Bar(c2))).  [back_rewrite(25),rewrite([1266(10)])].
+1389 PartialOrder(PlusOp(x,y),PlusOp(y,z)) | -PartialOrder(x,PlusOp(z,y)).  [para(1266(a,1),71(b,2))].
+1410 PartialOrder(PlusOp(x,XOp(y,z)),PlusOp(x,z)).  [resolve(72,b,343,a)].
+1416 PartialOrder(PlusOp(x,y),PlusOp(x,PlusOp(z,y))).  [resolve(72,b,84,a)].
+1726 PartialOrder(PlusOp(XOp(x,y),z),PlusOp(y,z)).  [resolve(82,b,342,a)].
+1748 PartialOrder(PlusOp(x,y),PlusOp(PlusOp(x,z),y)).  [resolve(82,b,74,a)].
+1749 PartialOrder(PlusOp(x,y),PlusOp(PlusOp(z,x),y)).  [resolve(82,b,73,a)].
+1779 PartialOrder(PlusOp(x,y),PlusOp(PlusOp(y,z),x)).  [resolve(83,b,74,a)].
+1885 PartialOrder(Top,PlusOp(x,Bar(XOp(x,y)))).  [para(22(a,1),1226(a,1)),rewrite([1266(4)])].
+1889 PlusOp(x,Bar(XOp(x,y))) = Top.  [resolve(1885,a,31,a),flip(a)].
+1915 PartialOrder(XOp(PlusOp(x,y),Bar(y)),x).  [para(23(a,1),88(a,2,2)),rewrite([207(5)])].
+1921 PlusOp(PlusOp(x,y),Bar(x)) = Top.  [para(213(a,1),1889(a,1,2,1))].
+1923 PlusOp(x,Bar(XOp(y,x))) = Top.  [para(438(a,1),1889(a,1,2,1))].
+1952 PartialOrder(Bar(Bar(x)),x).  [para(22(a,1),1915(a,1,1)),rewrite([314(4)])].
+1953 PartialOrder(XOp(PlusOp(x,y),Bar(x)),y).  [para(1266(a,1),1915(a,1,1))].
+1967 PartialOrder(Bar(Bar(x)),XOp(x,Bar(Bar(x)))).  [resolve(1952,a,43,b)].
+2014 PartialOrder(XOp(x,y),XOp(PlusOp(z,y),x)).  [resolve(92,b,343,a)].
+2028 PartialOrder(XOp(x,XOp(y,z)),XOp(y,x)).  [resolve(92,b,107,a)].
+2034 PartialOrder(XOp(x,y),XOp(y,x)).  [resolve(92,b,39,a)].
+2139 PartialOrder(XOp(x,XOp(y,z)),XOp(x,z)).  [resolve(93,b,106,a)].
+2179 XOp(x,y) = XOp(y,x).  [resolve(2034,a,9,b),unit_del(a,2034)].
+2258 PartialOrder(XOp(PlusOp(x,y),z),PlusOp(x,XOp(z,y))).  [para(2179(a,1),88(a,2,2))].
+2286 -PartialOrder(Top,PlusOp(x,y)) | PlusOp(x,y) = Top.  [para(1921(a,1),76(a,1)),rewrite([1921(6)]),flip(b)].
+2370 PartialOrder(Bar(x),Bar(XOp(y,x))).  [para(1923(a,1),1953(a,1,1)),rewrite([314(3)])].
+2429 PartialOrder(XOp(x,Bar(y)),Bar(XOp(z,y))).  [resolve(2370,a,110,a)].
+2487 PartialOrder(XOp(XOp(x,y),z),XOp(x,z)).  [resolve(104,b,95,a)].
+2949 -PartialOrder(x,PlusOp(y,z)) | PartialOrder(x,PlusOp(y,PlusOp(u,z))).  [resolve(1416,a,10,b)].
+3193 XOp(x,Bar(Bar(x))) = Bar(Bar(x)).  [resolve(1967,a,111,a)].
+3297 PartialOrder(PlusOp(PlusOp(x,y),z),PlusOp(PlusOp(y,z),x)).  [resolve(158,b,1779,a)].
+3343 PartialOrder(PlusOp(x,y),PlusOp(PlusOp(z,y),u)) | -PartialOrder(x,PlusOp(PlusOp(y,z),u)).  [para(1266(a,1),158(b,2,1))].
+3424 PartialOrder(PlusOp(x,PlusOp(y,z)),PlusOp(PlusOp(y,x),z)).  [resolve(159,b,1748,a)].
+3644 PartialOrder(XOp(x,Bar(PlusOp(y,x))),Bot).  [para(23(a,1),2014(a,2)),rewrite([2179(3)])].
+3650 XOp(x,Bar(PlusOp(y,x))) = Bot.  [resolve(3644,a,29,a),flip(a)].
+3659 XOp(XOp(x,y),Bar(x)) = Bot.  [para(337(a,1),3650(a,1,2,1))].
+3685 XOp(Bar(x),XOp(x,y)) = Bot.  [para(3659(a,1),2179(a,1)),flip(a)].
+4143 PartialOrder(PlusOp(PlusOp(x,y),z),PlusOp(PlusOp(z,x),y)).  [resolve(167,b,1749,a)].
+5623 PartialOrder(PlusOp(PlusOp(x,y),z),PlusOp(y,PlusOp(x,z))).  [resolve(217,b,1249,a)].
+5841 PartialOrder(XOp(x,Bar(y)),XOp(x,Bar(XOp(z,y)))).  [resolve(2429,a,93,b)].
+7037 PartialOrder(PlusOp(x,PlusOp(y,z)),PlusOp(y,PlusOp(x,z))).  [resolve(228,b,1416,a)].
+7740 PartialOrder(XOp(XOp(x,y),z),XOp(y,XOp(x,z))).  [resolve(246,b,2487,a)].
+9021 Bar(Bar(x)) = x.  [para(23(a,1),339(a,1,1)),rewrite([3193(4),188(4)])].
+9024 PlusOp(XOp(x,y),XOp(y,Bar(x))) = y.  [para(2179(a,1),339(a,1,1))].
+9025 PlusOp(XOp(x,y),XOp(Bar(y),x)) = x.  [para(2179(a,1),339(a,1,2))].
+9026 PartialOrder(XOp(x,Bar(XOp(x,y))),XOp(x,Bar(y))).  [para(339(a,1),1953(a,1,1))].
+9029 PartialOrder(x,PlusOp(XOp(x,y),Bar(y))).  [para(339(a,1),1410(a,1))].
+9036 XOp(Bar(x),Bar(XOp(x,y))) = Bar(x).  [para(3685(a,1),339(a,1,1)),rewrite([188(6)])].
+9203 PartialOrder(x,PlusOp(XOp(y,x),Bar(y))).  [para(2179(a,1),9029(a,2,1))].
+9305 PartialOrder(PlusOp(x,Bar(y)),PlusOp(XOp(y,x),Bar(y))).  [resolve(9203,a,82,b)].
+10525 PartialOrder(XOp(x,XOp(y,z)),XOp(XOp(y,x),z)).  [resolve(271,b,2028,a)].
+11807 PartialOrder(XOp(x,XOp(y,z)),XOp(y,XOp(x,z))).  [resolve(284,b,2139,a)].
+11824 -PartialOrder(Top,PlusOp(x,y)) | PlusOp(y,x) = Top.  [para(1266(a,1),2286(a,2))].
+14685 XOp(x,Bar(PlusOp(y,Bar(x)))) = Bar(PlusOp(y,Bar(x))).  [para(3650(a,1),9025(a,1,2)),rewrite([2179(4),1266(6),188(6)])].
+24095 PartialOrder(XOp(x,y),PlusOp(XOp(x,z),XOp(y,XOp(x,Bar(z))))).  [para(339(a,1),2258(a,1,1))].
+25531 PlusOp(PlusOp(x,y),z) = PlusOp(PlusOp(z,x),y).  [resolve(3297,a,9,b),flip(b),unit_del(a,4143)].
+26222 PlusOp(PlusOp(x,y),z) = PlusOp(y,PlusOp(x,z)).  [resolve(3424,a,9,b),flip(b),unit_del(a,5623)].
+26309 PlusOp(x,PlusOp(y,z)) = PlusOp(z,PlusOp(x,y)).  [back_rewrite(25531),rewrite([26222(2),26222(4)]),flip(a)].
+26631 PartialOrder(PlusOp(x,y),PlusOp(y,PlusOp(z,u))) | -PartialOrder(x,PlusOp(z,PlusOp(y,u))).  [back_rewrite(3343),rewrite([26222(3),26222(6)])].
+29102 PlusOp(x,PlusOp(y,z)) = PlusOp(y,PlusOp(x,z)).  [resolve(7037,a,9,b),unit_del(a,7037)].
+29615 XOp(XOp(x,y),z) = XOp(y,XOp(x,z)).  [resolve(7740,a,9,b),unit_del(a,10525)].
+31473 XOp(x,Bar(XOp(x,y))) = XOp(x,Bar(y)).  [resolve(9026,a,9,b),unit_del(a,5841)].
+32561 PlusOp(XOp(x,y),Bar(x)) = PlusOp(y,Bar(x)).  [resolve(9305,a,9,b),flip(b),unit_del(a,1726)].
+34866 XOp(x,XOp(y,z)) = XOp(y,XOp(x,z)).  [resolve(11807,a,9,b),unit_del(a,11807)].
+37715 -PartialOrder(Top,PlusOp(x,PlusOp(y,z))) | PlusOp(y,PlusOp(x,z)) = Top.  [para(26309(a,2),11824(a,2)),rewrite([26222(6)])].
+38172 Bar(XOp(x,y)) = PlusOp(Bar(y),Bar(x)).  [para(31473(a,1),9024(a,1,1)),rewrite([2179(6),9036(6),32561(4)]),flip(a)].
+38181 Bar(PlusOp(Bar(x),Bar(y))) = XOp(y,x).  [para(31473(a,1),31473(a,1,2,1)),rewrite([38172(3),9021(2),19(3),23(3),1266(3),188(3),38172(3),14685(6)]),flip(a)].
+39160 Bar(PlusOp(x,Bar(y))) = XOp(y,Bar(x)).  [para(9021(a,1),38181(a,1,1,1))].
+39222 Bar(PlusOp(x,y)) = XOp(Bar(y),Bar(x)).  [para(9021(a,1),39160(a,1,1,2))].
+39484 PartialOrder(PlusOp(XOp(c1,c2),x),PlusOp(x,c3)) | PartialOrder(c1,PlusOp(c3,Bar(c2))).  [resolve(1389,b,1372,a)].
+75141 PartialOrder(c1,PlusOp(c3,XOp(c1,Bar(c2)))) | PartialOrder(c1,PlusOp(c3,Bar(c2))).  [para(339(a,1),39484(a,1)),rewrite([1266(7)])].
+75152 PartialOrder(c1,PlusOp(c3,Bar(c2))).  [resolve(75141,a,1374,a),rewrite([1266(11)]),merge(b)].
+75153 -PartialOrder(XOp(c1,c2),c3).  [back_unit_del(1385),unit_del(b,75152)].
+75188 PartialOrder(c1,PlusOp(c3,PlusOp(x,Bar(c2)))).  [resolve(75152,a,2949,a)].
+75218 PartialOrder(PlusOp(c1,x),PlusOp(x,PlusOp(c3,Bar(c2)))).  [resolve(75188,a,26631,b)].
+75323 -PartialOrder(XOp(c1,c2),XOp(x,c3)).  [ur(17,b,75153,a)].
+78963 PartialOrder(Top,PlusOp(c3,PlusOp(Bar(c1),Bar(c2)))).  [para(22(a,1),75218(a,1)),rewrite([29102(8)])].
+78972 PlusOp(c3,PlusOp(Bar(c1),Bar(c2))) = Top.  [resolve(78963,a,37715,a),rewrite([29102(7)])].
+79512 XOp(c1,XOp(c2,Bar(c3))) = Bot.  [para(78972(a,1),39222(a,1,1)),rewrite([317(2),39222(7),9021(4),9021(5),2179(4),29615(7),34866(7)]),flip(a)].
+79582 $F.  [para(79512(a,1),24095(a,2,2)),rewrite([2179(3),1266(8),188(8)]),unit_del(a,75323)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=4346. Generated=1806941. Kept=79573. proofs=1.
+Usable=2735. Sos=19999. Demods=511. Limbo=28, Disabled=56828. Hints=0.
+Megabytes=70.60.
+User_CPU=36.45, System_CPU=0.97, Wall_clock=38.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 10172 exit (max_proofs) Mon Nov 30 19:40:09 2020

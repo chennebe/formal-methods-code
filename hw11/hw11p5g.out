@@ -1,0 +1,190 @@
+============================== Prover9 ===============================
+Prover9 (64) version 2009-11A, November 2009.
+Process 11165 was started by charles on oasis,
+Mon Nov 30 20:15:03 2020
+The command was "prover9 -f hw11p5g.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file hw11p5g.in
+
+clear(print_initial_clauses).
+clear(print_kept).
+clear(print_given).
+assign(stats,none).
+assign(max_seconds,10).
+
+formulas(assumptions).
+PartialOrder(x,x).
+PartialOrder(x,y) & PartialOrder(y,x) -> x = y.
+PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z).
+(all x PartialOrder(Bot,x)).
+(all x PartialOrder(x,Top)).
+PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z).
+PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y).
+XOp(x,PlusOp(y,z)) = PlusOp(XOp(x,y),XOp(x,z)).
+PlusOp(x,XOp(y,z)) = XOp(PlusOp(x,y),PlusOp(x,z)).
+PartialOrder(XOp(x,y),z) <-> PartialOrder(x,Imp(y,z)).
+end_of_list.
+
+formulas(goals).
+Imp(x,x) = Top.
+XOp(x,Imp(x,y)) = XOp(x,y).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 PartialOrder(x,y) & PartialOrder(y,x) -> x = y # label(non_clause).  [assumption].
+2 PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z) # label(non_clause).  [assumption].
+3 (all x PartialOrder(Bot,x)) # label(non_clause).  [assumption].
+4 (all x PartialOrder(x,Top)) # label(non_clause).  [assumption].
+5 PartialOrder(PlusOp(x,y),z) <-> PartialOrder(x,z) & PartialOrder(y,z) # label(non_clause).  [assumption].
+6 PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y) # label(non_clause).  [assumption].
+7 PartialOrder(XOp(x,y),z) <-> PartialOrder(x,Imp(y,z)) # label(non_clause).  [assumption].
+8 Imp(x,x) = Top # label(non_clause) # label(goal).  [goal].
+9 XOp(x,Imp(x,y)) = XOp(x,y) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:
+  % assign(max_proofs, 2).  % (Horn set with more than one neg. clause)
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, PartialOrder ]).
+Function symbol precedence:  function_order([ Bot, Top, c1, c2, c3, XOp, PlusOp, Imp ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(hyper_resolution).  % (nonunit Horn with equality)
+    % set(hyper_resolution) -> set(pos_hyper_resolution).
+  % set(neg_ur_resolution).  % (nonunit Horn with equality)
+  % assign(para_lit_limit, 3).  % (nonunit Horn with equality)
+
+Auto_process settings:  (no changes).
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.02 seconds.
+
+============================== PROOF =================================
+
+% Proof 1 at 0.03 (+ 0.01) seconds.
+% Length of proof is 15.
+% Level of proof is 4.
+% Maximum clause weight is 10.000.
+% Given clauses 19.
+
+1 PartialOrder(x,y) & PartialOrder(y,x) -> x = y # label(non_clause).  [assumption].
+4 (all x PartialOrder(x,Top)) # label(non_clause).  [assumption].
+6 PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y) # label(non_clause).  [assumption].
+7 PartialOrder(XOp(x,y),z) <-> PartialOrder(x,Imp(y,z)) # label(non_clause).  [assumption].
+8 Imp(x,x) = Top # label(non_clause) # label(goal).  [goal].
+10 PartialOrder(x,x).  [assumption].
+11 -PartialOrder(x,y) | -PartialOrder(y,x) | y = x.  [clausify(1)].
+14 PartialOrder(x,Top).  [clausify(4)].
+19 -PartialOrder(x,XOp(y,z)) | PartialOrder(x,z).  [clausify(6)].
+24 -PartialOrder(XOp(x,y),z) | PartialOrder(x,Imp(y,z)).  [clausify(7)].
+26 Imp(c1,c1) != Top.  [deny(8)].
+36 PartialOrder(XOp(x,y),y).  [hyper(19,a,10,a)].
+47 -PartialOrder(Top,Imp(c1,c1)).  [ur(11,b,14,a,c,26,a)].
+70 -PartialOrder(XOp(Top,c1),c1).  [ur(24,b,47,a)].
+71 $F.  [resolve(70,a,36,a)].
+
+============================== end of proof ==========================
+
+% Disable descendants (x means already disabled):
+ 26 47 70 72 73 74 75
+
+% Operation PlusOp is commutative; C redundancy checks enabled.
+
+% Operation XOp is commutative; C redundancy checks enabled.
+
+Low Water (keep): wt=31.000, iters=6677
+
+Low Water (keep): wt=27.000, iters=6799
+
+Low Water (keep): wt=25.000, iters=6688
+
+Low Water (keep): wt=23.000, iters=6676
+
+Low Water (keep): wt=21.000, iters=6728
+
+Low Water (keep): wt=19.000, iters=6680
+
+Low Water (keep): wt=17.000, iters=6684
+
+Low Water (keep): wt=15.000, iters=6703
+
+============================== PROOF =================================
+
+% Proof 2 at 1.10 (+ 0.04) seconds.
+% Length of proof is 26.
+% Level of proof is 7.
+% Maximum clause weight is 11.000.
+% Given clauses 237.
+
+1 PartialOrder(x,y) & PartialOrder(y,x) -> x = y # label(non_clause).  [assumption].
+2 PartialOrder(x,y) & PartialOrder(y,z) -> PartialOrder(x,z) # label(non_clause).  [assumption].
+6 PartialOrder(z,XOp(x,y)) <-> PartialOrder(z,x) & PartialOrder(z,y) # label(non_clause).  [assumption].
+7 PartialOrder(XOp(x,y),z) <-> PartialOrder(x,Imp(y,z)) # label(non_clause).  [assumption].
+9 XOp(x,Imp(x,y)) = XOp(x,y) # label(non_clause) # label(goal).  [goal].
+10 PartialOrder(x,x).  [assumption].
+11 -PartialOrder(x,y) | -PartialOrder(y,x) | y = x.  [clausify(1)].
+12 -PartialOrder(x,y) | -PartialOrder(y,z) | PartialOrder(x,z).  [clausify(2)].
+18 -PartialOrder(x,XOp(y,z)) | PartialOrder(x,y).  [clausify(6)].
+19 -PartialOrder(x,XOp(y,z)) | PartialOrder(x,z).  [clausify(6)].
+20 PartialOrder(x,XOp(y,z)) | -PartialOrder(x,y) | -PartialOrder(x,z).  [clausify(6)].
+24 -PartialOrder(XOp(x,y),z) | PartialOrder(x,Imp(y,z)).  [clausify(7)].
+25 PartialOrder(XOp(x,y),z) | -PartialOrder(x,Imp(y,z)).  [clausify(7)].
+27 XOp(c2,Imp(c2,c3)) != XOp(c2,c3).  [deny(9)].
+35 PartialOrder(XOp(x,y),x).  [hyper(18,a,10,a)].
+36 PartialOrder(XOp(x,y),y).  [hyper(19,a,10,a)].
+46 PartialOrder(XOp(Imp(x,y),x),y).  [hyper(25,b,10,a)].
+169 PartialOrder(x,Imp(y,x)).  [hyper(24,a,35,a)].
+196 PartialOrder(XOp(x,y),XOp(y,x)).  [hyper(20,b,36,a,c,35,a)].
+342 PartialOrder(XOp(x,y),Imp(z,y)).  [hyper(12,a,36,a,b,169,a)].
+413 PartialOrder(XOp(Imp(x,y),x),XOp(x,y)).  [hyper(20,b,36,a,c,46,a)].
+1319 XOp(x,y) = XOp(y,x).  [hyper(11,a,196,a,b,196,a)].
+1390 PartialOrder(XOp(x,Imp(x,y)),XOp(x,y)).  [back_rewrite(413),rewrite([1319(2)])].
+2141 PartialOrder(XOp(x,y),XOp(x,Imp(z,y))).  [hyper(20,b,35,a,c,342,a)].
+20944 -PartialOrder(XOp(c2,c3),XOp(c2,Imp(c2,c3))).  [ur(11,b,1390,a,c,27,a)].
+20945 $F.  [resolve(20944,a,2141,a)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=237. Generated=55598. Kept=20933. proofs=2.
+Usable=204. Sos=18093. Demods=101. Limbo=52, Disabled=2600. Hints=0.
+Megabytes=25.12.
+User_CPU=1.10, System_CPU=0.04, Wall_clock=1.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 2 proofs.
+
+Process 11165 exit (max_proofs) Mon Nov 30 20:15:04 2020
