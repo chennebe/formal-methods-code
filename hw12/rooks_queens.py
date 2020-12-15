@@ -71,7 +71,7 @@ def printBoard(n, Qs, Rs, model):
 # n=board size
 # sols=number of solutions wanted 
 # exclude=list of constraints to skip, empty by default
-def solve(n, sols, exclude=[]):
+def solve(n, sols=1, exclude=[]):
 	if n < 3:
 		print("n must be at least 3!")
 		return
@@ -233,8 +233,9 @@ def solve(n, sols, exclude=[]):
 
 print("Rooks & Queens")
 print("==============")
-print("To run this program, call solve(n, sols)" + \
-	" where n is the size of the board and sols is the " + \
-	"maximum number of solutions to find for a given call.")
+print("To run this program, call solve(n)" + \
+	" where n is the size of the board. You can also " + \
+	"specify a number of solutions to try and find by calling " + \
+	"solve(n, sols) where sols is the number of solutions.")
 print("Do note that the program will randomly generate a set I, " + \
 	"so it is possible that there is no solution for a given call.")
